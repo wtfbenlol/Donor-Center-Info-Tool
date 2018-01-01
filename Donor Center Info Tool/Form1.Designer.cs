@@ -32,8 +32,14 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateZebraConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zB1GenConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.zB2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportAnIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchButton = new System.Windows.Forms.Button();
             this.centerName = new System.Windows.Forms.TextBox();
             this.searchEntryBox = new System.Windows.Forms.TextBox();
@@ -52,12 +58,6 @@
             this.zebraButton1 = new System.Windows.Forms.Button();
             this.zebraButton2 = new System.Windows.Forms.Button();
             this.konicaButton = new System.Windows.Forms.Button();
-            this.generateZebraConfigFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zB1GenConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.zB2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportAnIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +86,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -97,6 +97,12 @@
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
+            // preferencesToolStripMenuItem
+            // 
+            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.preferencesToolStripMenuItem.Text = "Preferences";
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -104,6 +110,29 @@
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // generateZebraConfigFileToolStripMenuItem
+            // 
+            this.generateZebraConfigFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zB1GenConfig,
+            this.zB2ToolStripMenuItem});
+            this.generateZebraConfigFileToolStripMenuItem.Name = "generateZebraConfigFileToolStripMenuItem";
+            this.generateZebraConfigFileToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.generateZebraConfigFileToolStripMenuItem.Text = "Generate Zebra Config File";
+            // 
+            // zB1GenConfig
+            // 
+            this.zB1GenConfig.Name = "zB1GenConfig";
+            this.zB1GenConfig.Size = new System.Drawing.Size(94, 22);
+            this.zB1GenConfig.Text = "ZB1";
+            this.zB1GenConfig.Click += new System.EventHandler(this.zB1GenConfig_Click);
+            // 
+            // zB2ToolStripMenuItem
+            // 
+            this.zB2ToolStripMenuItem.Name = "zB2ToolStripMenuItem";
+            this.zB2ToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.zB2ToolStripMenuItem.Text = "ZB2";
+            this.zB2ToolStripMenuItem.Click += new System.EventHandler(this.zB2ToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -114,9 +143,22 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // reportAnIssueToolStripMenuItem
+            // 
+            this.reportAnIssueToolStripMenuItem.Name = "reportAnIssueToolStripMenuItem";
+            this.reportAnIssueToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.reportAnIssueToolStripMenuItem.Text = "Report an Issue";
+            // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(243, 303);
+            this.searchButton.Location = new System.Drawing.Point(218, 211);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(108, 20);
             this.searchButton.TabIndex = 3;
@@ -135,7 +177,7 @@
             // 
             // searchEntryBox
             // 
-            this.searchEntryBox.Location = new System.Drawing.Point(123, 303);
+            this.searchEntryBox.Location = new System.Drawing.Point(112, 211);
             this.searchEntryBox.Name = "searchEntryBox";
             this.searchEntryBox.Size = new System.Drawing.Size(100, 20);
             this.searchEntryBox.TabIndex = 5;
@@ -276,51 +318,10 @@
             this.konicaButton.UseVisualStyleBackColor = true;
             this.konicaButton.Click += new System.EventHandler(this.konicaButton_Click);
             // 
-            // generateZebraConfigFileToolStripMenuItem
-            // 
-            this.generateZebraConfigFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zB1GenConfig,
-            this.zB2ToolStripMenuItem});
-            this.generateZebraConfigFileToolStripMenuItem.Name = "generateZebraConfigFileToolStripMenuItem";
-            this.generateZebraConfigFileToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.generateZebraConfigFileToolStripMenuItem.Text = "Generate Zebra Config File";
-            // 
-            // zB1GenConfig
-            // 
-            this.zB1GenConfig.Name = "zB1GenConfig";
-            this.zB1GenConfig.Size = new System.Drawing.Size(152, 22);
-            this.zB1GenConfig.Text = "ZB1";
-            this.zB1GenConfig.Click += new System.EventHandler(this.zB1GenConfig_Click);
-            // 
-            // zB2ToolStripMenuItem
-            // 
-            this.zB2ToolStripMenuItem.Name = "zB2ToolStripMenuItem";
-            this.zB2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zB2ToolStripMenuItem.Text = "ZB2";
-            this.zB2ToolStripMenuItem.Click += new System.EventHandler(this.zB2ToolStripMenuItem_Click);
-            // 
-            // preferencesToolStripMenuItem
-            // 
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.preferencesToolStripMenuItem.Text = "Preferences";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // reportAnIssueToolStripMenuItem
-            // 
-            this.reportAnIssueToolStripMenuItem.Name = "reportAnIssueToolStripMenuItem";
-            this.reportAnIssueToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.reportAnIssueToolStripMenuItem.Text = "Report an Issue";
-            // 
             // searchLabel
             // 
             this.searchLabel.AutoSize = true;
-            this.searchLabel.Location = new System.Drawing.Point(24, 307);
+            this.searchLabel.Location = new System.Drawing.Point(12, 214);
             this.searchLabel.Name = "searchLabel";
             this.searchLabel.Size = new System.Drawing.Size(94, 13);
             this.searchLabel.TabIndex = 21;

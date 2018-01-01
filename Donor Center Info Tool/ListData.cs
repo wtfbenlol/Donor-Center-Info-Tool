@@ -1,43 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
+﻿using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 
 namespace Donor_Center_Info_Tool
 {
-    class ListData
+    //abstraction that returns a dataset in the form of a list that can be used to populate fields in the form.
+    internal class ListData
     {
-
         public List<string> CenterDataByCode(string center)
         {
-            string sql = "select * from Centers where Code=" + center;
-            const string filename = @"C:\Users\bdddy\Documents\GitHub\Donor-Center-Information-Tool\centers.db";
+            var sql = "select * from Centers where Code=" + center;
+            const string filename = @"C:\db\centers.db";
             var conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
 
             conn.Open();
-            DataSet ds = new DataSet();
+            var ds = new DataSet();
             var da = new SQLiteDataAdapter(sql, conn);
             da.Fill(ds);
 
-            List<string> rowData = new List<string>();
+            var rowData = new List<string>();
 
             foreach (DataTable table in ds.Tables)
-            {
-                foreach (DataRow row in table.Rows)
-                {
-                    foreach (string item in row.ItemArray)
-                    {
-                        rowData.Add(item);
-                    }
-                }
+            foreach (DataRow row in table.Rows)
+            foreach (string item in row.ItemArray)
+                rowData.Add(item);
 
-            }
             return rowData;
         }
     }
-
 }
-
