@@ -11,15 +11,16 @@ namespace Donor_Center_Info_Tool
         public Form1()
         {
             InitializeComponent();
+            SearchByNameResultWindow search = new SearchByNameResultWindow();
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        public void PopulateFields(string centercode)
         {
+
             try
             {
                 var ld = new ListData();
-                var centerData = ld.CenterDataByCode(searchEntryBox.Text);
+                var centerData = ld.CenterDataByCode(centercode);
 
                 // assigned data to fields
                 centerName.Text = centerData[0];
@@ -55,66 +56,40 @@ namespace Donor_Center_Info_Tool
                 DialogResult = MessageBox.Show(invalidInput, caption, butts);
             }
         }
+    
 
-
-        private void zebraButton1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            var ip = zebraButton1.Text;
-            Process.Start("http://" + ip);
-        }
-
-
-        private void zebraButton2_Click(object sender, EventArgs e)
-        {
-            var ip = zebraButton2.Text;
-            Process.Start("http://" + ip);
-        }
-
-
-        private void konicaButton_Click(object sender, EventArgs e)
-        {
-            var ip = konicaButton.Text;
-            Process.Start("http://" + ip);
-        }
-
-
-        private void zB1GenConfig_Click(object sender, EventArgs e)
-        {
-            var ld = new ListData();
-            var centerData = ld.CenterDataByCode(searchEntryBox.Text);
-
-            var url = @"http://" + centerData[1].Replace("x", "65") + @"/config.html";
-            var s = new Scraper();
-            s.Scrape(url);
-        }
-
-
-        private void zB2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var ld = new ListData();
-            var centerData = ld.CenterDataByCode(searchEntryBox.Text);
-            try
-            {
-                var url = @"http://" + centerData[1].Replace("x", "66") + @"/config.html";
-                var s = new Scraper();
-                s.Scrape(url);
-            }
-            catch (WebException err)
-            {
-                var res = (HttpWebResponse) err.Response;
-                if (res.StatusCode == HttpStatusCode.NotFound)
-                {
-                    var url = @"http://" + centerData[1].Replace("x", "66") + @"/printer/config.html";
-                    var s = new Scraper();
-                    s.Scrape(url);
-                }
-            }
+            PopulateFields(searchEntryBox.Text);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox1 ab = new AboutBox1();
             ab.ShowDialog();
+        }
+
+        private void searchByNameButton_Click(object sender, EventArgs e)
+        {
+            ListData ld = new ListData();
+            string centerName = seachByNameEntry.Text;
+
+            ld.CenterDataByName(centerName);
+        }
+
+        private void zB1GenConfig_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void zB2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void zebraButton2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }
