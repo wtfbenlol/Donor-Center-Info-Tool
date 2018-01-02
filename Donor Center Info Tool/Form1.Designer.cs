@@ -1,4 +1,6 @@
-﻿namespace Donor_Center_Info_Tool
+﻿using System;
+
+namespace Donor_Center_Info_Tool
 {
     partial class Form1
     {
@@ -59,6 +61,9 @@
             this.zebraButton2 = new System.Windows.Forms.Button();
             this.konicaButton = new System.Windows.Forms.Button();
             this.searchLabel = new System.Windows.Forms.Label();
+            this.seachByNameEntry = new System.Windows.Forms.TextBox();
+            this.searchByNameButton = new System.Windows.Forms.Button();
+            this.searchByNameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,6 +182,7 @@
             // 
             // searchEntryBox
             // 
+            this.searchEntryBox.AcceptsReturn = true;
             this.searchEntryBox.Location = new System.Drawing.Point(112, 211);
             this.searchEntryBox.Name = "searchEntryBox";
             this.searchEntryBox.Size = new System.Drawing.Size(100, 20);
@@ -327,11 +333,41 @@
             this.searchLabel.TabIndex = 21;
             this.searchLabel.Text = "Enter Center Code";
             // 
+            // seachByNameEntry
+            // 
+            this.seachByNameEntry.AcceptsReturn = true;
+            this.seachByNameEntry.Location = new System.Drawing.Point(112, 254);
+            this.seachByNameEntry.Name = "seachByNameEntry";
+            this.seachByNameEntry.Size = new System.Drawing.Size(100, 20);
+            this.seachByNameEntry.TabIndex = 22;
+            // 
+            // searchByNameButton
+            // 
+            this.searchByNameButton.Location = new System.Drawing.Point(218, 252);
+            this.searchByNameButton.Name = "searchByNameButton";
+            this.searchByNameButton.Size = new System.Drawing.Size(111, 23);
+            this.searchByNameButton.TabIndex = 23;
+            this.searchByNameButton.Text = "Search By Name";
+            this.searchByNameButton.UseVisualStyleBackColor = true;
+            this.searchByNameButton.Click += new System.EventHandler(this.searchByNameButton_Click);
+            // 
+            // searchByNameLabel
+            // 
+            this.searchByNameLabel.AutoSize = true;
+            this.searchByNameLabel.Location = new System.Drawing.Point(15, 261);
+            this.searchByNameLabel.Name = "searchByNameLabel";
+            this.searchByNameLabel.Size = new System.Drawing.Size(87, 13);
+            this.searchByNameLabel.TabIndex = 24;
+            this.searchByNameLabel.Text = "Search By Name";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 355);
+            this.Controls.Add(this.searchByNameLabel);
+            this.Controls.Add(this.searchByNameButton);
+            this.Controls.Add(this.seachByNameEntry);
             this.Controls.Add(this.searchLabel);
             this.Controls.Add(this.konicaButton);
             this.Controls.Add(this.zebraButton2);
@@ -360,6 +396,16 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void konicaButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void zebraButton1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -395,6 +441,9 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportAnIssueToolStripMenuItem;
         private System.Windows.Forms.Label searchLabel;
+        private System.Windows.Forms.TextBox seachByNameEntry;
+        private System.Windows.Forms.Button searchByNameButton;
+        private System.Windows.Forms.Label searchByNameLabel;
     }
 }
 
