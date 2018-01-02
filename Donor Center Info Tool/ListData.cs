@@ -34,8 +34,10 @@ namespace Donor_Center_Info_Tool
             var conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
 
             conn.Open();
+
             var ds = new DataSet();
             var da = new SQLiteDataAdapter(sql, conn);
+
             da.Fill(ds);
             
             var rowData = new List<string>();
@@ -52,7 +54,6 @@ namespace Donor_Center_Info_Tool
         {
 
             var ds = SearchDataBase(centerName);
-
             var centerData = new Dictionary<string, string>();
 
             foreach (DataTable table in ds.Tables)
@@ -66,13 +67,10 @@ namespace Donor_Center_Info_Tool
             foreach (KeyValuePair<string, string> row in centerData)
             {
                 nameSearch.searchByNameListView.Items.Add(new ListViewItem(new string[] {row.Key, row.Value}));
-
             }
 
             nameSearch.ShowInTaskbar = false;
             nameSearch.ShowDialog();
-
-
         }
     }
 }
