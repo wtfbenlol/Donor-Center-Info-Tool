@@ -71,10 +71,13 @@ namespace Donor_Center_Info_Tool
 
         private void searchByNameButton_Click(object sender, EventArgs e)
         {
+            if (searchByNameEntry.Text.ToString().Length != 0)
+            { 
             ListData ld = new ListData();
-            string centerName = seachByNameEntry.Text;
-
+            string centerName = searchByNameEntry.Text;
+            
             ld.CenterDataByName(centerName);
+            }
         }
 
         private void zB1GenConfig_Click(object sender, EventArgs e)
@@ -87,9 +90,37 @@ namespace Donor_Center_Info_Tool
             throw new NotImplementedException();
         }
 
+        private void zebraButton1_Click(object sender, EventArgs e)
+        {
+            if (zebraButton1.Text.Length != 0)
+            {
+                string ip = zebraButton1.Text;
+                Process.Start("http://" + ip);
+            }
+        }
+
         private void zebraButton2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (zebraButton2.Text.Length != 0)
+            {
+                string ip = zebraButton2.Text;
+                Process.Start("http://" + ip);
+            }
+        }
+
+        private void konicaButton_Click(object sender, EventArgs e)
+        {
+            if (konicaButton.Text.Length != 0)
+            {
+                string ip = konicaButton.Text;
+                Process.Start("http://" + ip);
+            }
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
