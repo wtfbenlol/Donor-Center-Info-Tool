@@ -2,7 +2,7 @@
 
 namespace Donor_Center_Info_Tool
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -91,7 +91,7 @@ namespace Donor_Center_Info_Tool
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -106,7 +106,7 @@ namespace Donor_Center_Info_Tool
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences";
             // 
             // toolsToolStripMenuItem
@@ -170,7 +170,7 @@ namespace Donor_Center_Info_Tool
             this.searchButton.TabIndex = 3;
             this.searchButton.Text = "Search By Code";
             this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.button1_Click);
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // centerName
             // 
@@ -363,7 +363,7 @@ namespace Donor_Center_Info_Tool
             this.searchByNameLabel.TabIndex = 24;
             this.searchByNameLabel.Text = "Search By Name";
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -392,7 +392,7 @@ namespace Donor_Center_Info_Tool
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.Text = "Donor Center Info Tool";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
