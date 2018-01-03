@@ -26,7 +26,7 @@ namespace Donor_Center_Info_Tool
 
         private void nameSearchOk_Click(object sender, EventArgs e)
         {
-            var principalform = Application.OpenForms.OfType<Form1>().FirstOrDefault();
+            var principalform = Application.OpenForms.OfType<MainWindow>().FirstOrDefault();
             string value = searchByNameListView.SelectedItems[0].SubItems[1].Text;
             if (principalform != null) principalform.PopulateFields(value);
             ActiveForm.Close();
