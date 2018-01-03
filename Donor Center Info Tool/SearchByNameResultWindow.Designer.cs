@@ -89,6 +89,9 @@ namespace Donor_Center_Info_Tool
             this.Controls.Add(this.searchByNameListView);
             this.Controls.Add(this.nameSearchCancel);
             this.Controls.Add(this.nameSearchOk);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SearchByNameResultWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Name Search Results";

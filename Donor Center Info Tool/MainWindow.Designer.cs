@@ -64,6 +64,8 @@ namespace Donor_Center_Info_Tool
             this.searchByNameEntry = new System.Windows.Forms.TextBox();
             this.searchByNameButton = new System.Windows.Forms.Button();
             this.searchByNameLabel = new System.Windows.Forms.Label();
+            this.cneterCodeLabel = new System.Windows.Forms.Label();
+            this.centerCodeBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +78,7 @@ namespace Donor_Center_Info_Tool
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(614, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(518, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -363,11 +365,31 @@ namespace Donor_Center_Info_Tool
             this.searchByNameLabel.TabIndex = 24;
             this.searchByNameLabel.Text = "Search By Name";
             // 
+            // cneterCodeLabel
+            // 
+            this.cneterCodeLabel.AutoSize = true;
+            this.cneterCodeLabel.Location = new System.Drawing.Point(24, 156);
+            this.cneterCodeLabel.Name = "cneterCodeLabel";
+            this.cneterCodeLabel.Size = new System.Drawing.Size(66, 13);
+            this.cneterCodeLabel.TabIndex = 25;
+            this.cneterCodeLabel.Text = "Center Code";
+            // 
+            // centerCodeBox
+            // 
+            this.centerCodeBox.Location = new System.Drawing.Point(123, 153);
+            this.centerCodeBox.Name = "centerCodeBox";
+            this.centerCodeBox.ReadOnly = true;
+            this.centerCodeBox.Size = new System.Drawing.Size(100, 20);
+            this.centerCodeBox.TabIndex = 26;
+            this.centerCodeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 355);
+            this.ClientSize = new System.Drawing.Size(518, 298);
+            this.Controls.Add(this.centerCodeBox);
+            this.Controls.Add(this.cneterCodeLabel);
             this.Controls.Add(this.searchByNameLabel);
             this.Controls.Add(this.searchByNameButton);
             this.Controls.Add(this.searchByNameEntry);
@@ -391,6 +413,7 @@ namespace Donor_Center_Info_Tool
             this.Controls.Add(this.centerName);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Donor Center Info Tool";
@@ -439,6 +462,8 @@ namespace Donor_Center_Info_Tool
         private System.Windows.Forms.TextBox searchByNameEntry;
         private System.Windows.Forms.Button searchByNameButton;
         private System.Windows.Forms.Label searchByNameLabel;
+        private System.Windows.Forms.Label cneterCodeLabel;
+        private System.Windows.Forms.TextBox centerCodeBox;
     }
 }
 
