@@ -11,7 +11,10 @@ namespace Donor_Center_Info_Tool
 
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            var db = new DonorButton();
+            Controls.Add(db);
+
         }
 
         // initialize blank DonorCenter() class for use in this form
@@ -58,20 +61,20 @@ namespace Donor_Center_Info_Tool
             }
         }
     
-        private void searchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
             // check if entry field is blank, if blank, return
             if (searchEntryBox.Text.Length == 0) return;
             PopulateFields(searchEntryBox.Text);
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox1 ab = new AboutBox1();
             ab.ShowDialog();
         }
 
-        private void searchByNameButton_Click(object sender, EventArgs e)
+        private void SearchByNameButton_Click(object sender, EventArgs e)
         {
             // check for empty search box, return if empty
             if (searchByNameEntry.Text.Length == 0) return;
@@ -82,7 +85,7 @@ namespace Donor_Center_Info_Tool
             ld.CenterDataByName(name);
         }
 
-        private void zB1GenConfig_Click(object sender, EventArgs e)
+        private void ZB1GenConfig_Click(object sender, EventArgs e)
         {
             // initalize new instance of the scraper class
             Scraper scrape = new Scraper();
@@ -102,7 +105,7 @@ namespace Donor_Center_Info_Tool
 
         }
 
-        private void zB2ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ZB2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // initalize new instance of the scraper class
             Scraper scrape = new Scraper();
@@ -121,21 +124,21 @@ namespace Donor_Center_Info_Tool
             }
         }
 
-        private void zebraButton1_Click(object sender, EventArgs e)
+        private void ZebraButton1_Click(object sender, EventArgs e)
         {
             if (zebraButton1.Text.Length == 0) return;
             string ip = zebraButton1.Text;
             Process.Start("http://" + ip);
         }
 
-        private void zebraButton2_Click(object sender, EventArgs e)
+        private void ZebraButton2_Click(object sender, EventArgs e)
         {
             if (zebraButton2.Text.Length == 0) return;
             string ip = zebraButton2.Text;
             Process.Start("http://" + ip);
         }
 
-        private void konicaButton_Click(object sender, EventArgs e)
+        private void KonicaButton_Click(object sender, EventArgs e)
         {
             if (konicaButton.Text.Length == 0) return;
             string ip = konicaButton.Text;
@@ -143,9 +146,30 @@ namespace Donor_Center_Info_Tool
 
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ClearFormElements()
+        {
+            foreach (Control c in Controls)
+            {
+                if (c.GetType() == typeof(DonorTextBox))
+                {
+                    c.ResetText();                                
+                }
+
+                if (c.GetType() == typeof(DonorButton))
+                {
+                    c.ResetText();
+                }
+            }
+        }
+
+        private void ClearWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearFormElements();
         }
     }
 }

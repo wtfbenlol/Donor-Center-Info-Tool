@@ -55,7 +55,7 @@ namespace Donor_Center_Info_Tool
             this.nameSearchCancel.TabIndex = 2;
             this.nameSearchCancel.Text = "Cancel";
             this.nameSearchCancel.UseVisualStyleBackColor = true;
-            this.nameSearchCancel.Click += new System.EventHandler(this.nameSearchCancel_Click);
+            this.nameSearchCancel.Click += new System.EventHandler(this.NameSearchCancel_Click);
             // 
             // searchByNameListView
             // 
