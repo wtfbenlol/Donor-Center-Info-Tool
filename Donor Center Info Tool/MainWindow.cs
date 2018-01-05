@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
@@ -153,16 +154,19 @@ namespace Donor_Center_Info_Tool
 
         private void ClearFormElements()
         {
-            foreach (Control c in Controls)
+            foreach (var button in Controls.OfType<DonorButton>())
             {
-                if (c.GetType() == typeof(DonorTextBox))
+                if (button.CanBeCleared)
                 {
-                    c.ResetText();                                
+                    button.ResetText();
                 }
+            }
 
-                if (c.GetType() == typeof(DonorButton))
+            foreach (var entry in Controls.OfType<DonorTextBox>())
+            {
+                if (entry.CanBeCleared)
                 {
-                    c.ResetText();
+                    entry.ResetText();
                 }
             }
         }
