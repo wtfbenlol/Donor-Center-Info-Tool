@@ -28,11 +28,11 @@ namespace Donor_Center_Info_Tool
         {
             var principalform = Application.OpenForms.OfType<MainWindow>().FirstOrDefault();
             string value = searchByNameListView.SelectedItems[0].SubItems[1].Text;
-            if (principalform != null) principalform.PopulateFields(value);
+            principalform?.PopulateFields(value);
             ActiveForm.Close();
         }
 
-        private void nameSearchCancel_Click(object sender, EventArgs e)
+        private void NameSearchCancel_Click(object sender, EventArgs e)
         {
             ActiveForm.Close();
         }

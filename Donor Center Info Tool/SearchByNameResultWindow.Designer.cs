@@ -55,7 +55,7 @@ namespace Donor_Center_Info_Tool
             this.nameSearchCancel.TabIndex = 2;
             this.nameSearchCancel.Text = "Cancel";
             this.nameSearchCancel.UseVisualStyleBackColor = true;
-            this.nameSearchCancel.Click += new System.EventHandler(this.nameSearchCancel_Click);
+            this.nameSearchCancel.Click += new System.EventHandler(this.NameSearchCancel_Click);
             // 
             // searchByNameListView
             // 
@@ -89,6 +89,9 @@ namespace Donor_Center_Info_Tool
             this.Controls.Add(this.searchByNameListView);
             this.Controls.Add(this.nameSearchCancel);
             this.Controls.Add(this.nameSearchOk);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SearchByNameResultWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Name Search Results";

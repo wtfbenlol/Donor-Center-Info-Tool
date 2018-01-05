@@ -7,7 +7,7 @@ namespace Donor_Center_Info_Tool
 {
     internal class Scraper
     {
-        public void Scrape(string url)
+        public void Scrape(string url, string zebraname, string code)
         {
             var document = new HtmlDocument();
 
@@ -20,8 +20,8 @@ namespace Donor_Center_Info_Tool
             foreach (var node in document.DocumentNode.SelectNodes("//pre"))
             {
                 var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                File.Create(desktop + @"\zebra.txt").Close();
-                File.WriteAllText(desktop + @"\zebra.txt", node.InnerText);
+                File.Create(desktop + @"\" + code + zebraname +".txt").Close();
+                File.WriteAllText(desktop + @"\" + code + zebraname +".txt", node.InnerText);
                 //Console.WriteLine(node);
             }
         }

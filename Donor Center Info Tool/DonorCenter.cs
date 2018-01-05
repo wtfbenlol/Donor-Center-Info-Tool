@@ -17,6 +17,10 @@ namespace Donor_Center_Info_Tool
         public string Type { get; set; }
         public string Ext { get; set; }
 
+        // future properties //
+        //public string Zb1Ip { get; set; }
+        //public string Zb2Ip { get; set; }
+
         // declare read only list of PropertyInfo objects from class properties
         public readonly PropertyInfo[] PropertyList;
 
