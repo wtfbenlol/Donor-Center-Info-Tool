@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
@@ -14,8 +16,14 @@ namespace Donor_Center_Info_Tool
         {
             InitializeComponent();
             var db = new DonorButton();
+            // sets up the auto complete text in the search by name entry box on init so we dont have to load it later. 
+            // compares input prefixes to a list collection of center names pulled from the sqlite database
+            var source = new AutoCompleteStringCollection();
+            var sourceList = new ListData();
+            source.AddRange(sourceList.PopulateAutoComplete().ToArray());
+            searchByNameEntry.AutoCompleteCustomSource = source;
             Controls.Add(db);
-
+            
         }
 
         // initialize blank DonorCenter() class for use in this form
@@ -39,29 +47,22 @@ namespace Donor_Center_Info_Tool
                 zebraButton1.Text = dc.Ip.Replace("x", "65");
                 zebraButton2.Text = dc.Ip.Replace("x", "66");
                 konicaButton.Text = dc.Ip.Replace("x", "72");
+
             }
 
             catch (ArgumentOutOfRangeException)
             {
-                var wrongChoice = "You entered an invalid Center Code, try again";
-                var caption = "Error: Invalid Center Code";
-                var buttons = MessageBoxButtons.OK;
                 // show error dialog
-                DialogResult = MessageBox.Show(wrongChoice, caption, buttons);
+                DialogResult = MessageBox.Show("You entered an invalid Center Code, try again", "Error: Invalid Center Code", MessageBoxButtons.OK);
             }
 
             catch (SQLiteException)
             {
-                //Console.WriteLine(sqlerr);
-                var invalidInput =
-                    "You've entered something wrong. There is probably a letter insead of a center code";
-                var caption = "Error: Invalid Input";
-                var butts = MessageBoxButtons.OK;
                 // show error dialog
-                DialogResult = MessageBox.Show(invalidInput, caption, butts);
+                DialogResult = MessageBox.Show("You've entered something wrong. There are probably letters instead of a center code", "Error: Invalid Input", MessageBoxButtons.OK);
             }
         }
-    
+        
         private void SearchButton_Click(object sender, EventArgs e)
         {
             // check if entry field is blank, if blank, return
@@ -96,6 +97,8 @@ namespace Donor_Center_Info_Tool
             {
                 string url = @"http://" + zebraButton1.Text + @"/config.html";
                 scrape.Scrape(url, zebraLabel1.Text, centerCodeBox.Text);
+                scrape.ScrapePrinterStatus(url);
+
             }
 
             catch (WebException)
@@ -154,6 +157,7 @@ namespace Donor_Center_Info_Tool
 
         private void ClearFormElements()
         {
+            // uses linq reflection to check control type for custom control, then clears the control if CanBeCleared == true
             foreach (var button in Controls.OfType<DonorButton>())
             {
                 if (button.CanBeCleared)
@@ -174,6 +178,66 @@ namespace Donor_Center_Info_Tool
         private void ClearWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ClearFormElements();
+        }
+
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO
+            // code for preferences window will go here
+        }
+
+        private void generatePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            PasswordBox pwb = new PasswordBox();
+
+            string password = Randomizer.GeneratePassword(3, 2, 2, 1);
+            pwb.pwBoxTextBox.Text = password;
+            pwb.Show();
+        }
+
+        private void toolStripPwGen_Click(object sender, EventArgs e)
+        {
+            PasswordBox pwb = new PasswordBox();
+            
+            string password = Randomizer.GeneratePassword(3, 2, 2, 1);
+            pwb.pwBoxTextBox.Text = password;
+            pwb.Show();
+        }
+
+        private void toolStripClearFields_Click(object sender, EventArgs e) => ClearFormElements();
+
+        private void toolStripExitButton_Click(object sender, EventArgs e) => Application.Exit();
+
+        private void generatePasswordListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void savePwFile_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Randomizer.GeneratePasswordFile(25);
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Randomizer.GeneratePasswordFile(50);
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Randomizer.GeneratePasswordFile(100);
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            AboutBox1 ab = new AboutBox1();
+            ab.ShowDialog();
         }
     }
 }

@@ -44,6 +44,8 @@ namespace Donor_Center_Info_Tool
             }
             // initialize new dictionary with key/value pairs of PropertyList objects and centerData Strings
             Dictionary<PropertyInfo, string> dcData =
+                // the zip function takes 2 lists and uses arg[0] and the key and the
+                // arg[1] as the value and returns a dictionary object
                 PropertyList.Zip(centerData, (k, v) => new {k, v}).ToDictionary(x => x.k, x => x.v);
             return dcData;
         }

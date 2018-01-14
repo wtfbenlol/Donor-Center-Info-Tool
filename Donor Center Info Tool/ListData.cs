@@ -102,5 +102,29 @@ namespace Donor_Center_Info_Tool
             }
 
         }
+
+        public List<string> PopulateAutoComplete()
+        {
+              
+            // build connection string
+            var sql = "select Name from Centers";
+            const string filename = @"C:\db\centers.db";
+            var conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
+            // open the connection
+            conn.Open();
+            // Generate a new DataSet to be filled with the sql query results
+            var ds = new DataSet();
+            var da = new SQLiteDataAdapter(sql, conn);
+            // use the SQLite DataAdapter to fill the DataSet
+            da.Fill(ds);
+            // Create a list to store the DataSet
+            var rowData = new List<string>();
+            // Loop through the dataset by table, then by row and fill List<rowData>
+            foreach (DataTable table in ds.Tables)
+            foreach (DataRow row in table.Rows)
+                rowData.AddRange(row.ItemArray.Cast<string>());
+            // return the list for use outside the method
+            return rowData;
+        }
     }
 }
