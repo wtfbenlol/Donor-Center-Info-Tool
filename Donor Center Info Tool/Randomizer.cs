@@ -8,7 +8,7 @@ namespace Donor_Center_Info_Tool
 {
     internal class Randomizer
     {
-        /* Needs to generate SOX Compliant password for use in the Grifols Production environment
+        /* Needs to generate SOX Compliant password for use in the production environment
            - At least 8 characters
            - At least one Capital Letter
            - At least 2 numbers
@@ -40,26 +40,25 @@ namespace Donor_Center_Info_Tool
             for (int i = 1; i <= lowercase; i++)
                 generated = generated.Insert(
                     random.Next(generated.Length), 
-                    lowers[random.Next(lowers.Length)].ToString()                  
-                );
-           
+                    lowers[random.Next(lowers.Length)].ToString());
+
             for (int i = 1; i <= uppercase; i++)
                 generated = generated.Insert(
-                    random.Next(generated.Length), 
-                    uppers[random.Next(uppers.Length)].ToString()
-                );
-            
+                    random.Next(generated.Length),
+                    uppers[random.Next(uppers.Length)].ToString());
+
+
             for (int i = 1; i <= numerics; i++)
                 generated = generated.Insert(
-                    random.Next(generated.Length), 
-                    numbers[random.Next(numbers.Length)].ToString()
-                );
-            
+                    random.Next(generated.Length),
+                    numbers[random.Next(numbers.Length)].ToString());
+
+
             for (int i = 1; i <= symbol; i++)
                 generated = generated.Insert(
-                    random.Next(generated.Length), 
-                    symbols[random.Next(symbols.Length)].ToString()
-                );
+                    random.Next(generated.Length),
+                    symbols[random.Next(symbols.Length)].ToString());
+                
 
             return generated.Replace("!", string.Empty);
 
