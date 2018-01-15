@@ -193,6 +193,15 @@ namespace Donor_Center_Info_Tool
 
             string password = Randomizer.GeneratePassword(3, 2, 2, 1);
             pwb.pwBoxTextBox.Text = password;
+            
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is PasswordBox)
+                {
+                    f.Focus();
+                }
+
+            }
             pwb.Show();
         }
 
@@ -202,7 +211,17 @@ namespace Donor_Center_Info_Tool
             
             string password = Randomizer.GeneratePassword(3, 2, 2, 1);
             pwb.pwBoxTextBox.Text = password;
+             
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is PasswordBox)
+                {
+                    f.Focus();
+                }
+
+            }
             pwb.Show();
+           
         }
 
         private void toolStripClearFields_Click(object sender, EventArgs e) => ClearFormElements();
