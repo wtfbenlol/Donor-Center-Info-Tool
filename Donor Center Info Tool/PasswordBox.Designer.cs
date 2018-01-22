@@ -77,10 +77,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PasswordBox";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Generate SOX Password";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

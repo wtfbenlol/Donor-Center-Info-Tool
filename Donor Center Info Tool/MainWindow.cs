@@ -32,21 +32,40 @@ namespace Donor_Center_Info_Tool
         public void PopulateFields(string centercode)
         {
             try
-            {               
+            {   
+                // initialize dc data 
                 dc.PopulateProperties(centercode);
                 // assigned data to fields
-                centerName.Text = dc.Name;
-                centerSubnet.Text = dc.Ip;
+                centerName.Text = dc.FriendlyName;
+                centerSubnet.Text = dc.Subnet;
                 centerPhone.Text = dc.Phone;
-                centerType1.Text = dc.Type;
-                centerExtension.Text = dc.Ext;
-                centerCodeBox.Text = dc.Code;
-                
-                    
+                centerType1.Text = dc.Company;
+                centerLocation.Text = dc.Donor_Center;
+                centerCodeBox.Text = dc.CenterCode;
+                centerAddrBox.Text = dc.PostAddr;
+                // generate distribution point 
+                DistPoint1Label.Text = dc.DistPoint1.ToUpper();
+                DistPointStatus1.BackColor = Color.Red;
+
+                DistPoint2Label.Text = dc.DistPoint2.ToUpper();
+                DistPointStatus2.BackColor = Color.Red;
+
+                // ping distribution points and set status box to green if the distribution point is online. 
+
+                if (dc.PingDistPoint(dc.DistPoint1))
+                {
+                    DistPointStatus1.BackColor = Color.Lime;
+                }
+
+                if (dc.PingDistPoint(dc.DistPoint2))
+                {
+                    DistPointStatus2.BackColor = Color.Lime;
+                }
+
                 // change button text to that of matching zebra printer IP
-                zebraButton1.Text = dc.Ip.Replace("x", "65");
-                zebraButton2.Text = dc.Ip.Replace("x", "66");
-                konicaButton.Text = dc.Ip.Replace("x", "72");
+                zebraButton1.Text = dc.FormatSubnetForPrinter(dc.Subnet, "zb1");
+                zebraButton2.Text = dc.FormatSubnetForPrinter(dc.Subnet, "zb2");
+                konicaButton.Text = dc.FormatSubnetForPrinter(dc.Subnet, "konica");
 
             }
 
@@ -90,15 +109,21 @@ namespace Donor_Center_Info_Tool
         private void ZB1GenConfig_Click(object sender, EventArgs e)
         {
             // initalize new instance of the scraper class
-            Scraper scrape = new Scraper();
+            
             // check to see if zebra label is not empty
-            if (zebraLabel2.Text.Length == 0) return;
+            if (zebraLabel1.Text.Length == 0) return;
+            Scraper scrape = new Scraper();
             try
             {
                 string url = @"http://" + zebraButton1.Text + @"/config.html";
                 scrape.Scrape(url, zebraLabel1.Text, centerCodeBox.Text);
                 scrape.ScrapePrinterStatus(url);
 
+            }
+
+            catch (System.ArgumentException)
+            {
+                MessageBox.Show("Please select a center first", "Error");
             }
 
             catch (WebException)
@@ -112,15 +137,19 @@ namespace Donor_Center_Info_Tool
         private void ZB2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // initalize new instance of the scraper class
-            Scraper scrape = new Scraper();
+            
             // check to see if zebra label is not empty
             if (zebraLabel2.Text.Length == 0) return;
+            Scraper scrape = new Scraper();
             try
             {
                 string url = @"http://" + zebraButton1.Text + @"/config.html";
                 scrape.Scrape(url, zebraLabel2.Text, centerCodeBox.Text);
             }
-
+            catch (System.ArgumentException)
+            {
+                MessageBox.Show("Please select a center first", "Error");
+            }
             catch (WebException)
             {
                 string url2 = @"http://" + zebraButton1.Text + @"/printer/config.html";
@@ -173,6 +202,15 @@ namespace Donor_Center_Info_Tool
                     entry.ResetText();
                 }
             }
+
+            // resets distribution point elements
+            DistPoint1Label.ResetText();
+            DistPoint2Label.ResetText();
+
+            DistPointStatus1.BackColor = Color.Empty;
+            DistPointStatus2.BackColor = Color.Empty;
+            // reset address box text
+            centerAddrBox.ResetText();
         }
 
         private void ClearWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,7 +240,7 @@ namespace Donor_Center_Info_Tool
                 }
 
             }
-            pwb.Show();
+            pwb.ShowDialog();
         }
 
         private void toolStripPwGen_Click(object sender, EventArgs e)
@@ -220,7 +258,7 @@ namespace Donor_Center_Info_Tool
                 }
 
             }
-            pwb.Show();
+            pwb.ShowDialog();
            
         }
 
@@ -257,6 +295,11 @@ namespace Donor_Center_Info_Tool
         {
             AboutBox1 ab = new AboutBox1();
             ab.ShowDialog();
+        }
+
+        private void DistPointGB_Enter(object sender, EventArgs e)
+        {
+            // not needed will remove at later date
         }
     }
 }
