@@ -23,6 +23,7 @@ namespace Donor_Center_Info_Tool
         public string DistPoint1 { get; set; }
         public string DistPoint2 { get; set; }
         public string PostAddr { get; set; }
+        public string Extension { get; set; }
 
        
 
@@ -36,7 +37,8 @@ namespace Donor_Center_Info_Tool
         // dump class properties into a PropertyList class
         public DonorCenter() => PropertyList = GetType().GetProperties();
 
-        //
+
+
         public string FormatSubnetForPrinter(string addr, string printer)
         {
 

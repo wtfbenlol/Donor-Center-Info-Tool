@@ -75,10 +75,10 @@ namespace Donor_Center_Info_Tool
             this.DistPointStatus1 = new System.Windows.Forms.Panel();
             this.DistPoint2Label = new System.Windows.Forms.Label();
             this.DistPoint1Label = new System.Windows.Forms.Label();
-            this.centerExtension = new System.Windows.Forms.Label();
+            this.centerExtensionLabel = new System.Windows.Forms.Label();
             this.centerAddInfo = new System.Windows.Forms.GroupBox();
             this.centerAddrBox = new System.Windows.Forms.TextBox();
-            this.donorTextBox1 = new Donor_Center_Info_Tool.DonorTextBox();
+            this.centerExtensionBox = new Donor_Center_Info_Tool.DonorTextBox();
             this.centerCodeBox = new Donor_Center_Info_Tool.DonorTextBox();
             this.searchByNameButton = new Donor_Center_Info_Tool.DonorButton();
             this.konicaButton = new Donor_Center_Info_Tool.DonorButton();
@@ -483,15 +483,15 @@ namespace Donor_Center_Info_Tool
             this.DistPoint1Label.Size = new System.Drawing.Size(0, 13);
             this.DistPoint1Label.TabIndex = 0;
             // 
-            // centerExtension
+            // centerExtensionLabel
             // 
-            this.centerExtension.AutoSize = true;
-            this.centerExtension.BackColor = System.Drawing.SystemColors.Control;
-            this.centerExtension.Location = new System.Drawing.Point(12, 92);
-            this.centerExtension.Name = "centerExtension";
-            this.centerExtension.Size = new System.Drawing.Size(87, 13);
-            this.centerExtension.TabIndex = 30;
-            this.centerExtension.Text = "Center Extension";
+            this.centerExtensionLabel.AutoSize = true;
+            this.centerExtensionLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.centerExtensionLabel.Location = new System.Drawing.Point(12, 92);
+            this.centerExtensionLabel.Name = "centerExtensionLabel";
+            this.centerExtensionLabel.Size = new System.Drawing.Size(87, 13);
+            this.centerExtensionLabel.TabIndex = 30;
+            this.centerExtensionLabel.Text = "Center Extension";
             // 
             // centerAddInfo
             // 
@@ -514,16 +514,16 @@ namespace Donor_Center_Info_Tool
             this.centerAddrBox.TabIndex = 0;
             this.centerAddrBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // donorTextBox1
+            // centerExtensionBox
             // 
-            this.donorTextBox1.CanBeCleared = true;
-            this.donorTextBox1.Location = new System.Drawing.Point(101, 89);
-            this.donorTextBox1.Name = "donorTextBox1";
-            this.donorTextBox1.ReadOnly = true;
-            this.donorTextBox1.Size = new System.Drawing.Size(116, 20);
-            this.donorTextBox1.TabIndex = 31;
-            this.donorTextBox1.Tag = "clear";
-            this.donorTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.centerExtensionBox.CanBeCleared = true;
+            this.centerExtensionBox.Location = new System.Drawing.Point(101, 89);
+            this.centerExtensionBox.Name = "centerExtensionBox";
+            this.centerExtensionBox.ReadOnly = true;
+            this.centerExtensionBox.Size = new System.Drawing.Size(130, 20);
+            this.centerExtensionBox.TabIndex = 31;
+            this.centerExtensionBox.Tag = "clear";
+            this.centerExtensionBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // centerCodeBox
             // 
@@ -531,7 +531,7 @@ namespace Donor_Center_Info_Tool
             this.centerCodeBox.Location = new System.Drawing.Point(101, 197);
             this.centerCodeBox.Name = "centerCodeBox";
             this.centerCodeBox.ReadOnly = true;
-            this.centerCodeBox.Size = new System.Drawing.Size(116, 20);
+            this.centerCodeBox.Size = new System.Drawing.Size(130, 20);
             this.centerCodeBox.TabIndex = 26;
             this.centerCodeBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -586,7 +586,7 @@ namespace Donor_Center_Info_Tool
             this.centerLocation.Location = new System.Drawing.Point(101, 223);
             this.centerLocation.Name = "centerLocation";
             this.centerLocation.ReadOnly = true;
-            this.centerLocation.Size = new System.Drawing.Size(116, 20);
+            this.centerLocation.Size = new System.Drawing.Size(130, 20);
             this.centerLocation.TabIndex = 17;
             this.centerLocation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -596,7 +596,7 @@ namespace Donor_Center_Info_Tool
             this.centerType1.Location = new System.Drawing.Point(101, 169);
             this.centerType1.Name = "centerType1";
             this.centerType1.ReadOnly = true;
-            this.centerType1.Size = new System.Drawing.Size(116, 20);
+            this.centerType1.Size = new System.Drawing.Size(130, 20);
             this.centerType1.TabIndex = 12;
             this.centerType1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -606,7 +606,7 @@ namespace Donor_Center_Info_Tool
             this.centerPhone.Location = new System.Drawing.Point(102, 141);
             this.centerPhone.Name = "centerPhone";
             this.centerPhone.ReadOnly = true;
-            this.centerPhone.Size = new System.Drawing.Size(116, 20);
+            this.centerPhone.Size = new System.Drawing.Size(129, 20);
             this.centerPhone.TabIndex = 10;
             this.centerPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -616,7 +616,7 @@ namespace Donor_Center_Info_Tool
             this.centerSubnet.Location = new System.Drawing.Point(101, 115);
             this.centerSubnet.Name = "centerSubnet";
             this.centerSubnet.ReadOnly = true;
-            this.centerSubnet.Size = new System.Drawing.Size(116, 20);
+            this.centerSubnet.Size = new System.Drawing.Size(130, 20);
             this.centerSubnet.TabIndex = 6;
             this.centerSubnet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -626,7 +626,7 @@ namespace Donor_Center_Info_Tool
             this.centerName.Location = new System.Drawing.Point(101, 63);
             this.centerName.Name = "centerName";
             this.centerName.ReadOnly = true;
-            this.centerName.Size = new System.Drawing.Size(116, 20);
+            this.centerName.Size = new System.Drawing.Size(130, 20);
             this.centerName.TabIndex = 4;
             this.centerName.Tag = "clear";
             this.centerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -650,8 +650,8 @@ namespace Donor_Center_Info_Tool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 352);
             this.Controls.Add(this.centerAddInfo);
-            this.Controls.Add(this.donorTextBox1);
-            this.Controls.Add(this.centerExtension);
+            this.Controls.Add(this.centerExtensionBox);
+            this.Controls.Add(this.centerExtensionLabel);
             this.Controls.Add(this.DistPointGB);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.centerCodeBox);
@@ -758,8 +758,8 @@ namespace Donor_Center_Info_Tool
         private System.Windows.Forms.Label DistPoint1Label;
         private System.Windows.Forms.Panel DistPointStatus2;
         private System.Windows.Forms.Panel DistPointStatus1;
-        private System.Windows.Forms.Label centerExtension;
-        private DonorTextBox donorTextBox1;
+        private System.Windows.Forms.Label centerExtensionLabel;
+        private DonorTextBox centerExtensionBox;
         private System.Windows.Forms.GroupBox centerAddInfo;
         private System.Windows.Forms.TextBox centerAddrBox;
     }

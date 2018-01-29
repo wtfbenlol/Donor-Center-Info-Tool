@@ -43,6 +43,7 @@ namespace Donor_Center_Info_Tool
                 centerLocation.Text = dc.Donor_Center;
                 centerCodeBox.Text = dc.CenterCode;
                 centerAddrBox.Text = dc.PostAddr;
+                centerExtensionBox.Text = dc.Extension;
                 // generate distribution point 
                 DistPoint1Label.Text = dc.DistPoint1.ToUpper();
                 DistPointStatus1.BackColor = Color.Red;
