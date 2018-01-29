@@ -71,8 +71,14 @@ namespace Donor_Center_Info_Tool
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.savePwFile = new System.Windows.Forms.SaveFileDialog();
             this.DistPointGB = new System.Windows.Forms.GroupBox();
-            this.DistPoint1Label = new System.Windows.Forms.Label();
+            this.DistPointStatus2 = new System.Windows.Forms.Panel();
+            this.DistPointStatus1 = new System.Windows.Forms.Panel();
             this.DistPoint2Label = new System.Windows.Forms.Label();
+            this.DistPoint1Label = new System.Windows.Forms.Label();
+            this.centerExtension = new System.Windows.Forms.Label();
+            this.centerAddInfo = new System.Windows.Forms.GroupBox();
+            this.centerAddrBox = new System.Windows.Forms.TextBox();
+            this.donorTextBox1 = new Donor_Center_Info_Tool.DonorTextBox();
             this.centerCodeBox = new Donor_Center_Info_Tool.DonorTextBox();
             this.searchByNameButton = new Donor_Center_Info_Tool.DonorButton();
             this.konicaButton = new Donor_Center_Info_Tool.DonorButton();
@@ -84,14 +90,10 @@ namespace Donor_Center_Info_Tool
             this.centerSubnet = new Donor_Center_Info_Tool.DonorTextBox();
             this.centerName = new Donor_Center_Info_Tool.DonorTextBox();
             this.searchButton = new Donor_Center_Info_Tool.DonorButton();
-            this.DistPointStatus1 = new System.Windows.Forms.Panel();
-            this.DistPointStatus2 = new System.Windows.Forms.Panel();
-            this.centerAddrBox = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.DistPointGB.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.centerAddInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -252,7 +254,7 @@ namespace Donor_Center_Info_Tool
             // 
             this.centerNameLabel.AutoSize = true;
             this.centerNameLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.centerNameLabel.Location = new System.Drawing.Point(13, 92);
+            this.centerNameLabel.Location = new System.Drawing.Point(12, 66);
             this.centerNameLabel.Name = "centerNameLabel";
             this.centerNameLabel.Size = new System.Drawing.Size(69, 13);
             this.centerNameLabel.TabIndex = 7;
@@ -270,7 +272,7 @@ namespace Donor_Center_Info_Tool
             // centerPhoneLabel
             // 
             this.centerPhoneLabel.AutoSize = true;
-            this.centerPhoneLabel.Location = new System.Drawing.Point(13, 144);
+            this.centerPhoneLabel.Location = new System.Drawing.Point(12, 144);
             this.centerPhoneLabel.Name = "centerPhoneLabel";
             this.centerPhoneLabel.Size = new System.Drawing.Size(72, 13);
             this.centerPhoneLabel.TabIndex = 9;
@@ -279,7 +281,7 @@ namespace Donor_Center_Info_Tool
             // centerTypeLabel
             // 
             this.centerTypeLabel.AutoSize = true;
-            this.centerTypeLabel.Location = new System.Drawing.Point(13, 172);
+            this.centerTypeLabel.Location = new System.Drawing.Point(12, 172);
             this.centerTypeLabel.Name = "centerTypeLabel";
             this.centerTypeLabel.Size = new System.Drawing.Size(65, 13);
             this.centerTypeLabel.TabIndex = 11;
@@ -297,7 +299,7 @@ namespace Donor_Center_Info_Tool
             // zebraLabel1
             // 
             this.zebraLabel1.AutoSize = true;
-            this.zebraLabel1.Location = new System.Drawing.Point(297, 257);
+            this.zebraLabel1.Location = new System.Drawing.Point(297, 266);
             this.zebraLabel1.Name = "zebraLabel1";
             this.zebraLabel1.Size = new System.Drawing.Size(44, 13);
             this.zebraLabel1.TabIndex = 14;
@@ -306,7 +308,7 @@ namespace Donor_Center_Info_Tool
             // zebraLabel2
             // 
             this.zebraLabel2.AutoSize = true;
-            this.zebraLabel2.Location = new System.Drawing.Point(297, 290);
+            this.zebraLabel2.Location = new System.Drawing.Point(297, 295);
             this.zebraLabel2.Name = "zebraLabel2";
             this.zebraLabel2.Size = new System.Drawing.Size(44, 13);
             this.zebraLabel2.TabIndex = 15;
@@ -443,11 +445,35 @@ namespace Donor_Center_Info_Tool
             this.DistPointGB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.DistPointGB.Location = new System.Drawing.Point(247, 89);
             this.DistPointGB.Name = "DistPointGB";
-            this.DistPointGB.Size = new System.Drawing.Size(238, 86);
+            this.DistPointGB.Size = new System.Drawing.Size(248, 86);
             this.DistPointGB.TabIndex = 28;
             this.DistPointGB.TabStop = false;
             this.DistPointGB.Text = "Distribution Points";
             this.DistPointGB.Enter += new System.EventHandler(this.DistPointGB_Enter);
+            // 
+            // DistPointStatus2
+            // 
+            this.DistPointStatus2.BackColor = System.Drawing.SystemColors.Control;
+            this.DistPointStatus2.Location = new System.Drawing.Point(201, 48);
+            this.DistPointStatus2.Name = "DistPointStatus2";
+            this.DistPointStatus2.Size = new System.Drawing.Size(18, 17);
+            this.DistPointStatus2.TabIndex = 3;
+            // 
+            // DistPointStatus1
+            // 
+            this.DistPointStatus1.BackColor = System.Drawing.SystemColors.Control;
+            this.DistPointStatus1.Location = new System.Drawing.Point(201, 23);
+            this.DistPointStatus1.Name = "DistPointStatus1";
+            this.DistPointStatus1.Size = new System.Drawing.Size(18, 17);
+            this.DistPointStatus1.TabIndex = 2;
+            // 
+            // DistPoint2Label
+            // 
+            this.DistPoint2Label.AutoSize = true;
+            this.DistPoint2Label.Location = new System.Drawing.Point(15, 50);
+            this.DistPoint2Label.Name = "DistPoint2Label";
+            this.DistPoint2Label.Size = new System.Drawing.Size(0, 13);
+            this.DistPoint2Label.TabIndex = 1;
             // 
             // DistPoint1Label
             // 
@@ -457,13 +483,47 @@ namespace Donor_Center_Info_Tool
             this.DistPoint1Label.Size = new System.Drawing.Size(0, 13);
             this.DistPoint1Label.TabIndex = 0;
             // 
-            // DistPoint2Label
+            // centerExtension
             // 
-            this.DistPoint2Label.AutoSize = true;
-            this.DistPoint2Label.Location = new System.Drawing.Point(15, 50);
-            this.DistPoint2Label.Name = "DistPoint2Label";
-            this.DistPoint2Label.Size = new System.Drawing.Size(0, 13);
-            this.DistPoint2Label.TabIndex = 1;
+            this.centerExtension.AutoSize = true;
+            this.centerExtension.BackColor = System.Drawing.SystemColors.Control;
+            this.centerExtension.Location = new System.Drawing.Point(12, 92);
+            this.centerExtension.Name = "centerExtension";
+            this.centerExtension.Size = new System.Drawing.Size(87, 13);
+            this.centerExtension.TabIndex = 30;
+            this.centerExtension.Text = "Center Extension";
+            // 
+            // centerAddInfo
+            // 
+            this.centerAddInfo.Controls.Add(this.centerAddrBox);
+            this.centerAddInfo.Location = new System.Drawing.Point(247, 181);
+            this.centerAddInfo.Name = "centerAddInfo";
+            this.centerAddInfo.Size = new System.Drawing.Size(248, 74);
+            this.centerAddInfo.TabIndex = 32;
+            this.centerAddInfo.TabStop = false;
+            this.centerAddInfo.Text = "Additional Info";
+            // 
+            // centerAddrBox
+            // 
+            this.centerAddrBox.BackColor = System.Drawing.SystemColors.Control;
+            this.centerAddrBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.centerAddrBox.Location = new System.Drawing.Point(7, 16);
+            this.centerAddrBox.Multiline = true;
+            this.centerAddrBox.Name = "centerAddrBox";
+            this.centerAddrBox.Size = new System.Drawing.Size(231, 52);
+            this.centerAddrBox.TabIndex = 0;
+            this.centerAddrBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // donorTextBox1
+            // 
+            this.donorTextBox1.CanBeCleared = true;
+            this.donorTextBox1.Location = new System.Drawing.Point(101, 89);
+            this.donorTextBox1.Name = "donorTextBox1";
+            this.donorTextBox1.ReadOnly = true;
+            this.donorTextBox1.Size = new System.Drawing.Size(116, 20);
+            this.donorTextBox1.TabIndex = 31;
+            this.donorTextBox1.Tag = "clear";
+            this.donorTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // centerCodeBox
             // 
@@ -501,7 +561,7 @@ namespace Donor_Center_Info_Tool
             // zebraButton2
             // 
             this.zebraButton2.CanBeCleared = true;
-            this.zebraButton2.Location = new System.Drawing.Point(347, 285);
+            this.zebraButton2.Location = new System.Drawing.Point(347, 290);
             this.zebraButton2.Name = "zebraButton2";
             this.zebraButton2.Size = new System.Drawing.Size(100, 23);
             this.zebraButton2.TabIndex = 19;
@@ -512,7 +572,7 @@ namespace Donor_Center_Info_Tool
             // zebraButton1
             // 
             this.zebraButton1.CanBeCleared = true;
-            this.zebraButton1.Location = new System.Drawing.Point(347, 252);
+            this.zebraButton1.Location = new System.Drawing.Point(347, 261);
             this.zebraButton1.Name = "zebraButton1";
             this.zebraButton1.Size = new System.Drawing.Size(100, 23);
             this.zebraButton1.TabIndex = 18;
@@ -563,7 +623,7 @@ namespace Donor_Center_Info_Tool
             // centerName
             // 
             this.centerName.CanBeCleared = true;
-            this.centerName.Location = new System.Drawing.Point(101, 89);
+            this.centerName.Location = new System.Drawing.Point(101, 63);
             this.centerName.Name = "centerName";
             this.centerName.ReadOnly = true;
             this.centerName.Size = new System.Drawing.Size(116, 20);
@@ -584,46 +644,14 @@ namespace Donor_Center_Info_Tool
             this.searchButton.UseVisualStyleBackColor = false;
             this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
-            // DistPointStatus1
-            // 
-            this.DistPointStatus1.BackColor = System.Drawing.SystemColors.Control;
-            this.DistPointStatus1.Location = new System.Drawing.Point(201, 23);
-            this.DistPointStatus1.Name = "DistPointStatus1";
-            this.DistPointStatus1.Size = new System.Drawing.Size(18, 17);
-            this.DistPointStatus1.TabIndex = 2;
-            // 
-            // DistPointStatus2
-            // 
-            this.DistPointStatus2.BackColor = System.Drawing.SystemColors.Control;
-            this.DistPointStatus2.Location = new System.Drawing.Point(201, 48);
-            this.DistPointStatus2.Name = "DistPointStatus2";
-            this.DistPointStatus2.Size = new System.Drawing.Size(18, 17);
-            this.DistPointStatus2.TabIndex = 3;
-            // 
-            // centerAddrBox
-            // 
-            this.centerAddrBox.Location = new System.Drawing.Point(4, 4);
-            this.centerAddrBox.Multiline = true;
-            this.centerAddrBox.Name = "centerAddrBox";
-            this.centerAddrBox.ReadOnly = true;
-            this.centerAddrBox.Size = new System.Drawing.Size(231, 50);
-            this.centerAddrBox.TabIndex = 0;
-            this.centerAddrBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.centerAddrBox);
-            this.panel1.Location = new System.Drawing.Point(247, 182);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(238, 57);
-            this.panel1.TabIndex = 29;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 352);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.centerAddInfo);
+            this.Controls.Add(this.donorTextBox1);
+            this.Controls.Add(this.centerExtension);
             this.Controls.Add(this.DistPointGB);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.centerCodeBox);
@@ -664,8 +692,8 @@ namespace Donor_Center_Info_Tool
             this.toolStrip1.PerformLayout();
             this.DistPointGB.ResumeLayout(false);
             this.DistPointGB.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.centerAddInfo.ResumeLayout(false);
+            this.centerAddInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -730,8 +758,10 @@ namespace Donor_Center_Info_Tool
         private System.Windows.Forms.Label DistPoint1Label;
         private System.Windows.Forms.Panel DistPointStatus2;
         private System.Windows.Forms.Panel DistPointStatus1;
+        private System.Windows.Forms.Label centerExtension;
+        private DonorTextBox donorTextBox1;
+        private System.Windows.Forms.GroupBox centerAddInfo;
         private System.Windows.Forms.TextBox centerAddrBox;
-        private System.Windows.Forms.Panel panel1;
     }
 }
 
