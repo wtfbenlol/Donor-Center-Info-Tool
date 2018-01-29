@@ -31,7 +31,7 @@ namespace Donor_Center_Info_Tool
             string generated = "!";
 
             // since these passwords will be used as temporary passwords, I don't feel that its necessary to use something stronger than the
-            // built in random class. Whie it isn't as secure as the rngcryptoservice class, it's faster and easier to convert into something useable 
+            // built in random class. While it isn't as secure as the rngcryptoservice class, it's faster and easier to convert into something useable 
             
 
             // on each iteration for each of the 4 args, we loop from 1 to length of the args and insert a random character at a random position in the string

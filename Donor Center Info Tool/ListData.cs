@@ -17,8 +17,8 @@ namespace Donor_Center_Info_Tool
              * method. But for now it works so i'm leaving it as a proof-of-concept */
              
             // build connection string
-            string sql = "select * from Centers where Code=" + center;
-            const string filename = @"C:\db\centers.db";
+            string sql = "select * from Centers where CenterCode=" + center;
+            const string filename = @"C:\db\centers_updated.db";
             SQLiteConnection conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
             // open the connection
             conn.Open();
@@ -48,8 +48,8 @@ namespace Donor_Center_Info_Tool
 
             try
             {
-                var sql = $"Select Name, Code from Centers where Name like '{centerName}%'";
-                const string filename = @"C:\db\centers.db";
+                var sql = $"Select DonorCenter, CenterCode from Centers where DonorCenter like '{centerName}%'";
+                const string filename = @"C:\db\centers_updated.db";
                 var conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
 
                 conn.Open();
@@ -108,8 +108,8 @@ namespace Donor_Center_Info_Tool
         {
               
             // build connection string
-            string sql = "select Name from Centers";
-            const string filename = @"C:\db\centers.db";
+            string sql = "select DonorCenter from Centers";
+            const string filename = @"C:\db\centers_updated.db";
             SQLiteConnection conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
 
             // open the connection
