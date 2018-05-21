@@ -77,7 +77,11 @@ namespace Donor_Center_Info_Tool
 
                     case "konica":
                         bytes[3] = 72;
-                        break;  
+                        break;
+                    
+                    case "reception":
+                        bytes[3] = 67;
+                        break;
             }
 
             IPAddress ip = new IPAddress(bytes);

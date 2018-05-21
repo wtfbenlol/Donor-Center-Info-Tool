@@ -147,38 +147,46 @@ namespace Donor_Center_Info_Tool
         { 
             // lets make sure the directory exists
             string dpath = @"c:\db";
-            if(!Directory.Exists(dpath))
-            {
-                Directory.CreateDirectory(dpath);
-            }
-            
-            // does the file exist? will be expanded to check md5 checksum for changes in file on startup
-            
 
-            if(!File.Exists(path)) {
-                // if not, copy the file to the local directory
-                File.Copy(udir, ddir, true);
-                // alert the user to the update
-                MessageBox.Show("1 file(s) copied successfully",
-                                "Local Data Base Updated Automatically",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-            }
-            else {
-                // if the file exsists, compare their hashes converted
-                // to strings, if the return value is 0,
-                // the strings match, any non zero intergers mean the files hashes do
-                // not match
-                if (!CheckMD5(udir, ddir)) {
-
-                    // copy the db file to the local c drive, overwriting if needed
+            try {
+                
+                if(!Directory.Exists(dpath))
+                {
+                    Directory.CreateDirectory(dpath);
+                }
+            
+                // does the file exist?            
+                if(!File.Exists(path)) {
+                    // if not, copy the file to the local directory
                     File.Copy(udir, ddir, true);
                     // alert the user to the update
                     MessageBox.Show("1 file(s) copied successfully",
                                     "Local Data Base Updated Automatically",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
-                }               
+                     }
+                else {
+                    // if the file exsists, compare their hashes converted
+                    // to strings, if the return value is 0,
+                    // the checksums are identical, any non zero intergers mean the files hashes do
+                    // not match
+                    if (!CheckMD5(udir, ddir)) {
+
+                        // copy the db file to the local c drive, overwriting if needed
+                        File.Copy(udir, ddir, true);
+                        // alert the user to the update
+                        MessageBox.Show("1 file(s) copied successfully",
+                                    "Local Data Base Updated Automatically",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                        }  
+            
+                    }
+            }
+            // is the file in use by another process? If so, throw exception and Exit
+            catch (IOException)
+            {
+                MessageBox.Show("File cannot be updated. File is in use by another process.", "Error");
             }
             
         }

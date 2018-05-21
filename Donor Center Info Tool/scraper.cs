@@ -19,14 +19,29 @@ namespace Donor_Center_Info_Tool
                 document.LoadHtml(page);
             }
 
+            SaveFileDialog save = new SaveFileDialog
+            {
+                FileName = "ZebraTest",
+                Filter = "Text File | *.txt"
+            };
+
+            if (save.ShowDialog() != DialogResult.OK) return;
+
+            StreamWriter writer = new StreamWriter(save.OpenFile());
+
             foreach (var node in document.DocumentNode.SelectNodes("//pre"))
             {
-                var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                File.Create(desktop + @"\" + code + zebraname +".txt").Close();
-                File.WriteAllText(desktop + @"\" + code + zebraname +".txt", node.InnerText);
+                writer.Write(node.InnerText); // so much more concise, eh?
+
+                //var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                //File.Create(desktop + @"\" + code + zebraname +".txt").Close();
+                //File.WriteAllText(desktop + @"\" + code + zebraname +".txt", node.InnerText);
                 //Console.WriteLine(node);
             }
+            writer.Dispose();
+
         }
+
         // WIP, not to be used
         public void ScrapePrinterStatus(string url)
         {
