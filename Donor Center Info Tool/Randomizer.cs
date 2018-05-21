@@ -20,8 +20,8 @@ namespace Donor_Center_Info_Tool
 
         // initialize the random class here prevents repeats due to the default seed depending on the pcs clock. 
         // certain loop contructs are too fast for the seed to update
-
         // for use with the RNGcrypto method
+
         const string valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%?";
 
         static Random random = new Random();
@@ -42,7 +42,7 @@ namespace Donor_Center_Info_Tool
             
 
             // on each iteration for each of the 4 args, we loop from 1 to length of the args and insert a random character at a random position in the string
-            // repeats 4 times
+            // repeats once for each type of character
 
             for (int i = 1; i <= lowercase; i++)
                 generated = generated.Insert(
@@ -54,19 +54,16 @@ namespace Donor_Center_Info_Tool
                     random.Next(generated.Length),
                     uppers[random.Next(uppers.Length)].ToString());
 
-
             for (int i = 1; i <= numerics; i++)
                 generated = generated.Insert(
                     random.Next(generated.Length),
                     numbers[random.Next(numbers.Length)].ToString());
-
 
             for (int i = 1; i <= symbol; i++)
                 generated = generated.Insert(
                     random.Next(generated.Length),
                     symbols[random.Next(symbols.Length)].ToString());
                 
-
             return generated.Replace("!", string.Empty);
 
         }
@@ -77,7 +74,7 @@ namespace Donor_Center_Info_Tool
 
             for (int i = 0; i < passwords.Length; i++)
             {
-                passwords[i] = GeneratePassword(3, 2, 2, 1);
+                passwords[i] = GenerateFixedCryptoPassword(8);
                 
             }
 
@@ -94,35 +91,34 @@ namespace Donor_Center_Info_Tool
                 writer.WriteLine(t);
             }
             writer.Dispose();
-            writer.Close();
+            //writer.Close();
         }
 
-        public static string GenerateRNGCryptoPassword(int length)
+        public static string GenerateFixedCryptoPassword(int length)
         {
-            // all the valid characters we can use for out password
-            const string valid = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ1234567890!@#$%?";
+            const string valid = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890!@#$%?";
 
-            // string to dumb generated text into
-            StringBuilder res = new StringBuilder();
-            // loop over the length of the password until we have no more spaces in the string
+            StringBuilder result = new StringBuilder();
+
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
-                // create a buffer the size of unsigned integer
                 byte[] uintBuffer = new byte[sizeof(uint)];
 
-                while (length-- >= 1)
+                while (result.Length < length)
                 {
-                    // dump each byte into the buffer
                     rng.GetBytes(uintBuffer);
-                    // convert the bit to a 32bit integer
                     uint num = BitConverter.ToUInt32(uintBuffer, 0);
-                    // normalize value by using the remainder of the converted integer by
-                    // the length of the valid string contant (as an unsigned integer)
-                    // and append it to the stringbuilder string
-                    res.Append(valid[(int)(num % (uint)valid.Length)]);
+                    char converted_int = valid[(int)(num % (uint)valid.Length)];
+
+                    // checks if char is already in the string. if not, add to string
+                    // other wise generate a new char
+                    if (!result.ToString().ToLower().Contains(converted_int.ToString().ToLower()))
+                    {
+                        result.Append(converted_int);
+                    }
                 }
             }
-        return res.ToString();
+            return result.ToString();
         }
     }
 }

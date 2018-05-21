@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Donor_Center_Info_Tool
@@ -20,7 +13,7 @@ namespace Donor_Center_Info_Tool
 
         private void passwordBoxOK_Click(object sender, EventArgs e)
         {
-            string password = Randomizer.GenerateRNGCryptoPassword(9);
+            string password = Randomizer.GenerateFixedCryptoPassword(8);
             pwBoxTextBox.Text = password;
         }
 

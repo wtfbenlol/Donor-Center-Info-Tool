@@ -17,6 +17,8 @@ namespace Donor_Center_Info_Tool
         public MainWindow()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(SearchEntryBox_KeyDown);
+            this.KeyDown += new KeyEventHandler(SearchByNameEntry_KeyDown);
             var db = new DonorButton();
             var sourceList = new ListData();
             //update the database files
@@ -66,6 +68,7 @@ namespace Donor_Center_Info_Tool
                 zebraButton1.Text = dc.FormatSubnetForPrinter(dc.Subnet, "zb1");
                 zebraButton2.Text = dc.FormatSubnetForPrinter(dc.Subnet, "zb2");
                 konicaButton.Text = dc.FormatSubnetForPrinter(dc.Subnet, "konica");
+                receptionButton.Text = dc.FormatSubnetForPrinter(dc.Subnet, "reception");
 
             }
 
@@ -203,6 +206,14 @@ namespace Donor_Center_Info_Tool
                 }
             }
 
+            foreach (var entry in Controls.OfType<DonorEntry>())
+            {
+                if (entry.CanBeCleared)
+                {
+                    entry.ResetText();
+                }
+            }
+
             // resets distribution point elements
             DistPoint1Label.ResetText();
 
@@ -227,31 +238,20 @@ namespace Donor_Center_Info_Tool
         private void generatePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            PasswordBox pwb = new PasswordBox();
-
             string password = Randomizer.GeneratePassword(3, 2, 2, 1);
-            pwb.pwBoxTextBox.Text = password;
+            pwBoxTextBoxMainForm.Text = password;
             
-            foreach (Form f in Application.OpenForms)
-            {
-                if (f is PasswordBox)
-                {
-                    f.Focus();
-                }
-
-            }
-            pwb.ShowDialog();
         }
 
         private void toolStripPwGen_Click(object sender, EventArgs e)
         {
             PasswordBox pwb = new PasswordBox();
             
-            string password = Randomizer.GenerateRNGCryptoPassword(9);
+            string password = Randomizer.GenerateFixedCryptoPassword(8);
             pwb.pwBoxTextBox.Text = password;
              
             foreach (Form f in Application.OpenForms)
-            {
+           {
                 if (f is PasswordBox)
                 {
                     f.Focus();
@@ -300,6 +300,46 @@ namespace Donor_Center_Info_Tool
         private void DistPointGB_Enter(object sender, EventArgs e)
         {
             // not needed will remove at later date
+        }
+
+
+        private void SearchEntryBox_KeyDown(object sender, KeyEventArgs e)
+        {
+  
+        if (e.KeyCode == Keys.Enter) {
+            //PopulateFields(searchEntryBox.Text);
+            searchButton.PerformClick();
+            // e.Handled = false;
+            }
+        }
+
+        private void SearchByNameEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+  
+        if (e.KeyCode == Keys.Enter) {
+            //PopulateFields(searchEntryBox.Text);
+            searchByNameButton.PerformClick();
+            // e.Handled = false;
+            }
+        }
+
+        private void GenPwButton_Click(object sender, EventArgs e)
+        {
+            string password = Randomizer.GenerateFixedCryptoPassword(8);
+            pwBoxTextBoxMainForm.Text = password;
+        }
+
+        private void receptionButton_Click(object sender, EventArgs e)
+        {
+            if (receptionButton.Text.Length == 0) return;
+            string ip = receptionButton.Text;
+            Process.Start("http://" + ip);
+        }
+
+        private void reportAnIssueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ErrorMail em = new ErrorMail();
+            em.SendMail();
         }
     }
 }

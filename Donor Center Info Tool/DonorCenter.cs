@@ -37,6 +37,26 @@ namespace Donor_Center_Info_Tool
         // dump class properties into a PropertyList class
         public DonorCenter() => PropertyList = GetType().GetProperties();
 
+        public string FormatExtension(string addr)
+        {
+            var bytes = IPAddress.Parse(addr).GetAddressBytes();
+            
+            if (bytes[2].ToString().Length == 2) {
+                string ext = "40" + bytes[2].ToString() + "XX";
+                return ext;
+            }
+
+            if (bytes[2].ToString().Length == 1) {
+                string ext = "400" + bytes[2].ToString() + "XX";
+                return ext;
+            }
+
+            else
+            {
+                string ext = "4" + bytes[2].ToString() + "XX";
+                return ext;
+            }
+        }
 
 
         public string FormatSubnetForPrinter(string addr, string printer)
@@ -56,7 +76,11 @@ namespace Donor_Center_Info_Tool
 
                     case "konica":
                         bytes[3] = 72;
-                        break;  
+                        break;
+                    
+                    case "reception":
+                        bytes[3] = 67;
+                        break;
             }
 
             IPAddress ip = new IPAddress(bytes);
