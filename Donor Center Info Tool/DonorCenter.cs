@@ -23,6 +23,7 @@ namespace Donor_Center_Info_Tool
         public string DistPoint1 { get; set; }
         public string DistPoint2 { get; set; }
         public string PostAddr { get; set; }
+        public string Extension { get; set; }
 
        
 
@@ -37,28 +38,6 @@ namespace Donor_Center_Info_Tool
         public DonorCenter() => PropertyList = GetType().GetProperties();
 
 
-        public string FormatExtension(string addr)
-        {
-            var bytes = IPAddress.Parse(addr).GetAddressBytes();
-            
-            if (bytes[2].ToString().Length == 2) {
-                string ext = "40" + bytes[2].ToString() + "XX";
-                return ext;
-            }
-
-            if (bytes[2].ToString().Length == 1) {
-                string ext = "400" + bytes[2].ToString() + "XX";
-                return ext;
-            }
-
-            else
-            {
-                string ext = "4" + bytes[2].ToString() + "XX";
-                return ext;
-            }
-
-            
-        }
 
         public string FormatSubnetForPrinter(string addr, string printer)
         {
