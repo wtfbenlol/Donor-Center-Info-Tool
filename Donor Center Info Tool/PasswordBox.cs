@@ -15,11 +15,12 @@ namespace Donor_Center_Info_Tool
         public PasswordBox()
         {
             InitializeComponent();
+            
         }
 
         private void passwordBoxOK_Click(object sender, EventArgs e)
         {
-            string password = Randomizer.GeneratePassword(2, 2, 2, 2);
+            string password = Randomizer.GenerateRNGCryptoPassword(9);
             pwBoxTextBox.Text = password;
         }
 

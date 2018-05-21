@@ -36,12 +36,12 @@
             // 
             // pwBoxTextBox
             // 
-            this.pwBoxTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pwBoxTextBox.Font = new System.Drawing.Font("Segoe UI", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pwBoxTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.pwBoxTextBox.Location = new System.Drawing.Point(43, 12);
             this.pwBoxTextBox.Name = "pwBoxTextBox";
             this.pwBoxTextBox.ReadOnly = true;
-            this.pwBoxTextBox.Size = new System.Drawing.Size(204, 45);
+            this.pwBoxTextBox.Size = new System.Drawing.Size(204, 51);
             this.pwBoxTextBox.TabIndex = 0;
             this.pwBoxTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -73,6 +73,7 @@
             this.Controls.Add(this.passwordBoxCopyToCB);
             this.Controls.Add(this.passwordBoxOK);
             this.Controls.Add(this.pwBoxTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

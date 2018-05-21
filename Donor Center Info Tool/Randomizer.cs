@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Text;
 
 
 namespace Donor_Center_Info_Tool
@@ -18,8 +20,13 @@ namespace Donor_Center_Info_Tool
 
         // initialize the random class here prevents repeats due to the default seed depending on the pcs clock. 
         // certain loop contructs are too fast for the seed to update
+
+        // for use with the RNGcrypto method
+        const string valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%?";
+
         static Random random = new Random();
 
+        // depreciated in favor of more secure rngcryptoserviceprovider function //
         public static string GeneratePassword(int lowercase, int uppercase, int numerics, int symbol)
         {
             string lowers = "abcdefghijklmnopqrstuvwxyz";
@@ -88,6 +95,34 @@ namespace Donor_Center_Info_Tool
             }
             writer.Dispose();
             writer.Close();
+        }
+
+        public static string GenerateRNGCryptoPassword(int length)
+        {
+            // all the valid characters we can use for out password
+            const string valid = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKMNOPQRSTUVWXYZ1234567890!@#$%?";
+
+            // string to dumb generated text into
+            StringBuilder res = new StringBuilder();
+            // loop over the length of the password until we have no more spaces in the string
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                // create a buffer the size of unsigned integer
+                byte[] uintBuffer = new byte[sizeof(uint)];
+
+                while (length-- >= 1)
+                {
+                    // dump each byte into the buffer
+                    rng.GetBytes(uintBuffer);
+                    // convert the bit to a 32bit integer
+                    uint num = BitConverter.ToUInt32(uintBuffer, 0);
+                    // normalize value by using the remainder of the converted integer by
+                    // the length of the valid string contant (as an unsigned integer)
+                    // and append it to the stringbuilder string
+                    res.Append(valid[(int)(num % (uint)valid.Length)]);
+                }
+            }
+        return res.ToString();
         }
     }
 }

@@ -11,22 +11,26 @@ namespace Donor_Center_Info_Tool
 {
     public partial class MainWindow : Form
     {
+        // initialize blank DonorCenter() class for use in this form
+        
 
         public MainWindow()
         {
             InitializeComponent();
             var db = new DonorButton();
+            var sourceList = new ListData();
+            //update the database files
+            string ddir = sourceList.ddir;
+            sourceList.UpdateDataBase(ddir);
             // sets up the auto complete text in the search by name entry box on init so we dont have to load it later. 
             // compares input prefixes to a list collection of center names pulled from the sqlite database
-            var source = new AutoCompleteStringCollection();
-            var sourceList = new ListData();
+            var source = new AutoCompleteStringCollection();            
+            // pass the dataset to the autofill method
             source.AddRange(sourceList.PopulateAutoComplete().ToArray());
             searchByNameEntry.AutoCompleteCustomSource = source;
-            Controls.Add(db);
-            
+            Controls.Add(db);         
         }
 
-        // initialize blank DonorCenter() class for use in this form
         readonly DonorCenter dc = new DonorCenter();
 
         public void PopulateFields(string centercode)
@@ -39,17 +43,16 @@ namespace Donor_Center_Info_Tool
                 centerName.Text = dc.FriendlyName;
                 centerSubnet.Text = dc.Subnet;
                 centerPhone.Text = dc.Phone;
+                donorExtBox1.Text = dc.FormatExtension(dc.Subnet);
                 centerType1.Text = dc.Company;
                 centerLocation.Text = dc.Donor_Center;
                 centerCodeBox.Text = dc.CenterCode;
                 centerAddrBox.Text = dc.PostAddr;
-                centerExtensionBox.Text = dc.Extension;
+
                 // generate distribution point 
                 DistPoint1Label.Text = dc.DistPoint1.ToUpper();
                 DistPointStatus1.BackColor = Color.Red;
 
-                DistPoint2Label.Text = dc.DistPoint2.ToUpper();
-                DistPointStatus2.BackColor = Color.Red;
 
                 // ping distribution points and set status box to green if the distribution point is online. 
 
@@ -58,10 +61,6 @@ namespace Donor_Center_Info_Tool
                     DistPointStatus1.BackColor = Color.Lime;
                 }
 
-                if (dc.PingDistPoint(dc.DistPoint2))
-                {
-                    DistPointStatus2.BackColor = Color.Lime;
-                }
 
                 // change button text to that of matching zebra printer IP
                 zebraButton1.Text = dc.FormatSubnetForPrinter(dc.Subnet, "zb1");
@@ -206,10 +205,10 @@ namespace Donor_Center_Info_Tool
 
             // resets distribution point elements
             DistPoint1Label.ResetText();
-            DistPoint2Label.ResetText();
+
 
             DistPointStatus1.BackColor = Color.Empty;
-            DistPointStatus2.BackColor = Color.Empty;
+
             // reset address box text
             centerAddrBox.ResetText();
         }
@@ -248,7 +247,7 @@ namespace Donor_Center_Info_Tool
         {
             PasswordBox pwb = new PasswordBox();
             
-            string password = Randomizer.GeneratePassword(3, 2, 2, 1);
+            string password = Randomizer.GenerateRNGCryptoPassword(9);
             pwb.pwBoxTextBox.Text = password;
              
             foreach (Form f in Application.OpenForms)

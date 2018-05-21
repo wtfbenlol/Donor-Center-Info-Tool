@@ -4,12 +4,21 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.IO;
 
 namespace Donor_Center_Info_Tool
 {
     // abstraction that returns a dataset in the form of a list that can be used to populate fields in the form.
+    // also updates the local .db database file to match a curated version hosted on a fileshare
     internal class ListData
     {
+        // these strings should never change locally
+        // local folder with most curernt db version
+        internal string udir = @"\\micv3b\is\DSS\NASD\Utilities\DCIT\centers_updated.db";
+        // destination directory
+        internal string ddir = @"c:\db\centers_updated.db";
+
         public List<string> CenterDataByCode(string center)
         {
             /* Note that this particular method is a little redundant and obtuse compared to the other
@@ -18,7 +27,7 @@ namespace Donor_Center_Info_Tool
              
             // build connection string
             string sql = "select * from Centers where CenterCode=" + center;
-            const string filename = @"C:\db\centers_updated.db";
+            const string filename = @"c:\db\centers_updated.db";
             SQLiteConnection conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
             // open the connection
             conn.Open();
@@ -49,7 +58,7 @@ namespace Donor_Center_Info_Tool
             try
             {
                 var sql = $"Select DonorCenter, CenterCode from Centers where DonorCenter like '{centerName}%'";
-                const string filename = @"C:\db\centers_updated.db";
+                const string filename = @"c:\db\centers_updated.db";
                 var conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
 
                 conn.Open();
@@ -109,11 +118,11 @@ namespace Donor_Center_Info_Tool
               
             // build connection string
             string sql = "select DonorCenter from Centers";
-            const string filename = @"C:\db\centers_updated.db";
+            const string filename = @"c:\db\centers_updated.db";
             SQLiteConnection conn = new SQLiteConnection("Data Source=" + filename + ";Version=3;");
 
             // open the connection
-            conn.Open();
+            ;conn.Open();
             // Generate a new DataSet to be filled with the sql query results
 
             DataSet ds = new DataSet();
@@ -132,6 +141,73 @@ namespace Donor_Center_Info_Tool
 
             // return the list for use outside the method
             return rowData;
+        }
+
+        public void UpdateDataBase(string path)
+        { 
+            // lets make sure the directory exists
+            string dpath = @"c:\db";
+            if(!Directory.Exists(dpath))
+            {
+                Directory.CreateDirectory(dpath);
+            }
+            
+            // does the file exist? will be expanded to check md5 checksum for changes in file on startup
+            
+
+            if(!File.Exists(path)) {
+                // if not, copy the file to the local directory
+                File.Copy(udir, ddir, true);
+                // alert the user to the update
+                MessageBox.Show("1 file(s) copied successfully",
+                                "Local Data Base Updated Automatically",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+            else {
+                // if the file exsists, compare their hashes converted
+                // to strings, if the return value is 0,
+                // the strings match, any non zero intergers mean the files hashes do
+                // not match
+                if (!CheckMD5(udir, ddir)) {
+
+                    // copy the db file to the local c drive, overwriting if needed
+                    File.Copy(udir, ddir, true);
+                    // alert the user to the update
+                    MessageBox.Show("1 file(s) copied successfully",
+                                    "Local Data Base Updated Automatically",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                }               
+            }
+            
+        }
+
+        static bool CheckMD5(string path1, string path2) {
+            // checks 2 strings and returns a bool value
+            // if the return value is anything but 0, the
+            // md5 is mismatched and requires an updated file
+            int result = String.Compare(GetMd5Hash(path1), GetMd5Hash(path2), true);
+            if (result != 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
+            
+        }
+
+        static string GetMd5Hash(string path) {
+            // create a new instance of MD5 
+            using (MD5 md5 = MD5.Create()) {
+                // open the source database file for reading into filestream
+                using (FileStream stream = File.OpenRead(path)) {
+                    // map the bytes returned to an array, return
+                    // and convert them to an easy-to-read string
+                    byte[] mData = md5.ComputeHash(stream);
+                    return BitConverter.ToString(mData).Replace("-", "").ToLowerInvariant();
+                }
+            }
         }
     }
 }
