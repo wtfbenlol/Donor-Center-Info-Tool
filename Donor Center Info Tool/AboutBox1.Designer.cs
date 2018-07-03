@@ -142,7 +142,8 @@
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "Description\r\n\r\nTool to better assist client centers and simplify to the\r\nprocess " +
-    "of data collections and analysis.\r\n";
+    "of data collections and analysis.\r\n\r\n\r\nHosted at: https://github.com/wtfbenlol/D" +
+    "onor-Center-Info-Tool/";
             // 
             // okButton
             // 

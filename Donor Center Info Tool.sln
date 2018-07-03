@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Donor Center Info Tool", "Donor Center Info Tool\Donor Center Info Tool.csproj", "{2E9E15D3-CD8D-42E2-AADF-A3BB58AA578D}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DCIT Setup Wizard", "DCIT Setup Wizard\DCIT Setup Wizard.vdproj", "{9E37C824-95C4-4A53-99A1-BD0007534C4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2E9E15D3-CD8D-42E2-AADF-A3BB58AA578D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E9E15D3-CD8D-42E2-AADF-A3BB58AA578D}.Release|x86.ActiveCfg = Release|x86
 		{2E9E15D3-CD8D-42E2-AADF-A3BB58AA578D}.Release|x86.Build.0 = Release|x86
+		{9E37C824-95C4-4A53-99A1-BD0007534C4C}.Debug|Any CPU.ActiveCfg = Debug
+		{9E37C824-95C4-4A53-99A1-BD0007534C4C}.Debug|x86.ActiveCfg = Debug
+		{9E37C824-95C4-4A53-99A1-BD0007534C4C}.Release|Any CPU.ActiveCfg = Release
+		{9E37C824-95C4-4A53-99A1-BD0007534C4C}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

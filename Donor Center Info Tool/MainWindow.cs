@@ -13,7 +13,6 @@ namespace Donor_Center_Info_Tool
     {
         // initialize blank DonorCenter() class for use in this form
         
-
         public MainWindow()
         {
             InitializeComponent();
@@ -238,7 +237,7 @@ namespace Donor_Center_Info_Tool
         private void generatePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            string password = Randomizer.GeneratePassword(3, 2, 2, 1);
+            string password = Randomizer.GenerateFixedCryptoPassword(8);
             pwBoxTextBoxMainForm.Text = password;
             
         }
@@ -302,7 +301,6 @@ namespace Donor_Center_Info_Tool
             // not needed will remove at later date
         }
 
-
         private void SearchEntryBox_KeyDown(object sender, KeyEventArgs e)
         {
   
@@ -340,6 +338,12 @@ namespace Donor_Center_Info_Tool
         {
             ErrorMail em = new ErrorMail();
             em.SendMail();
+        }
+
+        private void searchWikiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchWiki sw = new SearchWiki();
+            sw.Show();
         }
     }
 }
