@@ -49,7 +49,6 @@ namespace Donor_Center_Info_Tool
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportAnIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchEntryBox = new Donor_Center_Info_Tool.DonorEntry();
             this.centerNameLabel = new System.Windows.Forms.Label();
             this.centerSubnetLabel = new System.Windows.Forms.Label();
             this.centerPhoneLabel = new System.Windows.Forms.Label();
@@ -59,7 +58,6 @@ namespace Donor_Center_Info_Tool
             this.zebraLabel2 = new System.Windows.Forms.Label();
             this.konicaLabel = new System.Windows.Forms.Label();
             this.searchLabel = new System.Windows.Forms.Label();
-            this.searchByNameEntry = new Donor_Center_Info_Tool.DonorEntry();
             this.searchByNameLabel = new System.Windows.Forms.Label();
             this.cneterCodeLabel = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -79,11 +77,13 @@ namespace Donor_Center_Info_Tool
             this.pwBoxTextBoxMainForm = new System.Windows.Forms.TextBox();
             this.GenPwButton = new System.Windows.Forms.Button();
             this.receptionLabel = new System.Windows.Forms.Label();
-            this.receptionButton = new Donor_Center_Info_Tool.DonorButton();
             this.saveFileDialogZebra = new System.Windows.Forms.SaveFileDialog();
+            this.searchWikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.receptionButton = new Donor_Center_Info_Tool.DonorButton();
             this.donorExtBox1 = new Donor_Center_Info_Tool.DonorTextBox();
             this.centerCodeBox = new Donor_Center_Info_Tool.DonorTextBox();
             this.searchByNameButton = new Donor_Center_Info_Tool.DonorButton();
+            this.searchByNameEntry = new Donor_Center_Info_Tool.DonorEntry();
             this.konicaButton = new Donor_Center_Info_Tool.DonorButton();
             this.zebraButton2 = new Donor_Center_Info_Tool.DonorButton();
             this.zebraButton1 = new Donor_Center_Info_Tool.DonorButton();
@@ -91,6 +91,7 @@ namespace Donor_Center_Info_Tool
             this.centerType1 = new Donor_Center_Info_Tool.DonorTextBox();
             this.centerPhone = new Donor_Center_Info_Tool.DonorTextBox();
             this.centerSubnet = new Donor_Center_Info_Tool.DonorTextBox();
+            this.searchEntryBox = new Donor_Center_Info_Tool.DonorEntry();
             this.centerName = new Donor_Center_Info_Tool.DonorTextBox();
             this.searchButton = new Donor_Center_Info_Tool.DonorButton();
             this.menuStrip1.SuspendLayout();
@@ -155,7 +156,8 @@ namespace Donor_Center_Info_Tool
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generateZebraConfigFileToolStripMenuItem,
             this.generatePasswordToolStripMenuItem,
-            this.generatePasswordListToolStripMenuItem});
+            this.generatePasswordListToolStripMenuItem,
+            this.searchWikiToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -246,17 +248,6 @@ namespace Donor_Center_Info_Tool
             this.reportAnIssueToolStripMenuItem.Text = "Report an Issue";
             this.reportAnIssueToolStripMenuItem.Click += new System.EventHandler(this.reportAnIssueToolStripMenuItem_Click);
             // 
-            // searchEntryBox
-            // 
-            this.searchEntryBox.AcceptsReturn = true;
-            this.searchEntryBox.AcceptsTab = true;
-            this.searchEntryBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.searchEntryBox.CanBeCleared = true;
-            this.searchEntryBox.Location = new System.Drawing.Point(108, 311);
-            this.searchEntryBox.Name = "searchEntryBox";
-            this.searchEntryBox.Size = new System.Drawing.Size(117, 20);
-            this.searchEntryBox.TabIndex = 8;
-            // 
             // centerNameLabel
             // 
             this.centerNameLabel.AutoSize = true;
@@ -338,16 +329,6 @@ namespace Donor_Center_Info_Tool
             this.searchLabel.Size = new System.Drawing.Size(94, 13);
             this.searchLabel.TabIndex = 0;
             this.searchLabel.Text = "Enter Center Code";
-            // 
-            // searchByNameEntry
-            // 
-            this.searchByNameEntry.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.searchByNameEntry.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.searchByNameEntry.CanBeCleared = true;
-            this.searchByNameEntry.Location = new System.Drawing.Point(109, 348);
-            this.searchByNameEntry.Name = "searchByNameEntry";
-            this.searchByNameEntry.Size = new System.Drawing.Size(117, 20);
-            this.searchByNameEntry.TabIndex = 10;
             // 
             // searchByNameLabel
             // 
@@ -538,6 +519,13 @@ namespace Donor_Center_Info_Tool
             this.receptionLabel.TabIndex = 30;
             this.receptionLabel.Text = "Reception";
             // 
+            // searchWikiToolStripMenuItem
+            // 
+            this.searchWikiToolStripMenuItem.Name = "searchWikiToolStripMenuItem";
+            this.searchWikiToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.searchWikiToolStripMenuItem.Text = "Search Wiki..";
+            this.searchWikiToolStripMenuItem.Click += new System.EventHandler(this.searchWikiToolStripMenuItem_Click);
+            // 
             // receptionButton
             // 
             this.receptionButton.CanBeCleared = true;
@@ -585,6 +573,16 @@ namespace Donor_Center_Info_Tool
             this.searchByNameButton.TabStop = false;
             this.searchByNameButton.UseVisualStyleBackColor = false;
             this.searchByNameButton.Click += new System.EventHandler(this.SearchByNameButton_Click);
+            // 
+            // searchByNameEntry
+            // 
+            this.searchByNameEntry.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.searchByNameEntry.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.searchByNameEntry.CanBeCleared = true;
+            this.searchByNameEntry.Location = new System.Drawing.Point(109, 348);
+            this.searchByNameEntry.Name = "searchByNameEntry";
+            this.searchByNameEntry.Size = new System.Drawing.Size(117, 20);
+            this.searchByNameEntry.TabIndex = 10;
             // 
             // konicaButton
             // 
@@ -664,6 +662,17 @@ namespace Donor_Center_Info_Tool
             this.centerSubnet.TabIndex = 3;
             this.centerSubnet.TabStop = false;
             this.centerSubnet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // searchEntryBox
+            // 
+            this.searchEntryBox.AcceptsReturn = true;
+            this.searchEntryBox.AcceptsTab = true;
+            this.searchEntryBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.searchEntryBox.CanBeCleared = true;
+            this.searchEntryBox.Location = new System.Drawing.Point(108, 311);
+            this.searchEntryBox.Name = "searchEntryBox";
+            this.searchEntryBox.Size = new System.Drawing.Size(117, 20);
+            this.searchEntryBox.TabIndex = 8;
             // 
             // centerName
             // 
@@ -817,6 +826,7 @@ namespace Donor_Center_Info_Tool
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private DonorEntry searchEntryBox;
         private DonorEntry searchByNameEntry;
+        private System.Windows.Forms.ToolStripMenuItem searchWikiToolStripMenuItem;
     }
 }
 

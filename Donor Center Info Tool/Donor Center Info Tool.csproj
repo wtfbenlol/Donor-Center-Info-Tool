@@ -15,18 +15,23 @@
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>https://github.com/wtfbenlol/Donor-Center-Info-Tool</SupportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Donor Center Info Tool</ProductName>
+    <PublisherName>Ben Skinner</PublisherName>
     <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsLocation>Relative</BootstrapperComponentsLocation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -88,6 +93,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>grifols.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.6.11.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -157,6 +165,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizer.cs" />
     <Compile Include="scraper.cs" />
+    <Compile Include="SeachWiki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeachWiki.Designer.cs">
+      <DependentUpon>SeachWiki.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchByNameResultWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +198,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SeachWiki.resx">
+      <DependentUpon>SeachWiki.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchByNameResultWindow.resx">
       <DependentUpon>SearchByNameResultWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +231,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="grifols.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

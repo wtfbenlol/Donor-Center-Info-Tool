@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 
 
 namespace Donor_Center_Info_Tool
@@ -96,10 +97,21 @@ namespace Donor_Center_Info_Tool
 
         public static string GenerateFixedCryptoPassword(int length)
         {
-            const string valid = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890!@#$%?";
+            
+            // list of valid characters
+            const string valid = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ1234567890!@#$%&";
 
+            // create a mutable string to hold generated password
             StringBuilder result = new StringBuilder();
 
+            // create random range to insert symbol of non was generated
+            Random r = new Random();
+            StringBuilder symbols = new StringBuilder("!@#$%&");
+
+            // random seeds for result and symbol strings
+            int rint_result = r.Next(0, length);
+            int cint_result = r.Next(0, symbols.Length);
+            
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 byte[] uintBuffer = new byte[sizeof(uint)];
@@ -115,10 +127,23 @@ namespace Donor_Center_Info_Tool
                     if (!result.ToString().ToLower().Contains(converted_int.ToString().ToLower()))
                     {
                         result.Append(converted_int);
-                    }
+                    }  
                 }
+                
+                // ensure at least one special symbol has been added to the password
+                Console.WriteLine(result.ToString());
+
+                if (!result.ToString().Any(c => char.IsPunctuation(c))) {
+                    string new_result = result.ToString().Substring(1).Insert(rint_result, symbols[cint_result].ToString());
+                    return new_result;
+                }
+
+                else {
+                    return result.ToString();
+                }             
             }
-            return result.ToString();
+            
+            
         }
     }
 }
